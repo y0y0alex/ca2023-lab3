@@ -25,7 +25,7 @@ class InstructionFetch extends Module {
   when(io.instruction_valid) {
     io.instruction := io.instruction_read_data
     // lab3(InstructionFetch) begin
-
+    testqweqwesddfsdf
     // lab3(InstructionFetch) end
 
   }.otherwise {
