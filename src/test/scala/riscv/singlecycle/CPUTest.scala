@@ -113,3 +113,19 @@ class ByteAccessTest extends AnyFlatSpec with ChiselScalatestTester {
     }
   }
 }
+
+
+class logclz extends AnyFlatSpec with ChiselScalatestTester {
+  behavior.of("Single Cycle CPU")
+  it should "show the answer should be 6" in {
+    test(new TestTopModule("logclz.asmbin")).withAnnotations(TestAnnotations.annos) { c =>
+      for (i <- 1 to 50000) {
+        c.clock.step()
+        c.io.mem_debug_read_address.poke((i * 4).U) // Avoid timeout
+      }
+      c.io.regs_debug_read_address.poke(10.U)
+      c.io.regs_debug_read_data.expect(6.U)
+      
+    }
+  }
+}
